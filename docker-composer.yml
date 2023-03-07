@@ -1,0 +1,18 @@
+version: '3.7' 
+
+services:
+   expo: 
+      container_name: expo-container
+      build: ./ # Specify the directory of the Dockerfile
+      ports: # Specify port-forwarding
+         - 19000:19000 
+         - 19001:19001
+         - 19002:19002
+      volumes:
+         - ./:/app # Link host directory to container
+         - nodemodules:/app/node_modules
+      env_file: .env
+      command: eas build --platform android --local --non-interactive
+   
+volumes: 
+  nodemodules: {}
